@@ -84,7 +84,50 @@
 		</div>
 	</div>
 	<script>
-	  // your solution here
+    var R = document.getElementById('rotate-box');
+var r = new Hammer.Manager(R);
+    var rotate = new Hammer.Rotate();
+    r.add( rotate);
+    r.on("rotate", (er)=>{
+   R.textContent = er.type +"gesture detected ";
+});
+    
+    var P = document.getElementById('pinch-box');
+    var p = new Hammer.Manager(P);
+    var pin = new Hammer.Pinch();
+    p.add(pin);
+   p.on("pinch", (ep)=>{
+    P.textContent = ep.type +"gesture detected ";
+});
+
+   var Press = document.getElementById('press-box');
+  var press = new Hammer(Press);
+ press.on("press", (ep)=> {
+    Press.textContent = ep.type +" gesture detected";
+});
+    
+
+var Pan = document.getElementById('pan-box');
+var pan = new Hammer(Pan);
+ pan.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+  pan.on("panleft panright panup pandown", function(epan) {
+    Pan.textContent = epan.type +" gesture detected.";
+});
+    
+    
+
+var Tap = document.getElementById('tap-box');
+var tap = new Hammer(Tap);
+tap.on("tap press", function(etap) {
+   Tap.textContent = etap.type +" gesture detected";
+});
+    
+
+  var Swipe = document.getElementById('swipe-box');
+var swipe = new Hammer(Swipe);
+swipe.on("swipe", function(eswipe) {
+    Swipe.textContent = eswipe.type +" gesture detected";
+});  
   </script>
 </body>
 </html>
